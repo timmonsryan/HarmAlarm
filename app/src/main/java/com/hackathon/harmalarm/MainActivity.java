@@ -24,6 +24,8 @@ import android.widget.Toast;
 import com.bottlerocketstudios.groundcontrol.convenience.GroundControl;
 import com.bottlerocketstudios.groundcontrol.listener.AgentListener;
 import com.hackathon.harmalarm.service.DataAgent;
+import com.harman.hkwirelessapi.AudioCodecHandler;
+import com.harman.hkwirelessapi.HKWirelessHandler;
 
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -51,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
 
     public static List<TemperatureEntry> sTemperatureEntries;
 
+    // Harman stuff
+    public com.harman.hkwirelessapi.HKWirelessHandler mHarmanWirelessHandler = new HKWirelessHandler();
+    public com.harman.hkwirelessapi.AudioCodecHandler mAudioCodecHandler = new AudioCodecHandler();
+
+    private static final String HARMAN_KEY = "2FA8-2FD6-C27D-47E8-A256-D011-3751-2BD6";
+    private static final long HARMAN_DEVICE_ID = 72512472430768L;
+
+
     private int mPreviousTemperature = 0;
     private static final String TAG = "[MainActivity] ";
 
@@ -60,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Initialize Harman
+        mHarmanWirelessHandler.initializeHKWirelessController(HARMAN_KEY);
+        mHarmanWirelessHandler.addDeviceToSession(HARMAN_DEVICE_ID);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

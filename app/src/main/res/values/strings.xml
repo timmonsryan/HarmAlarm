@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">HarmAlarm</string>
     <string name="action_settings">Settings</string>
+    <string name="temperature_label">Current Temperature</string>
+    <string name="medicine_button_label">Medicine Reminder</string>
+    <string name="title_activity_info">History</string>
+    <string name="temperature_history_label">Temperature History</string>
+    <string name="action_graph">Show Graph</string>
+    <string name="data_point_prompt">Touch points on the graph to see temperatures.</string>
 </resources>
